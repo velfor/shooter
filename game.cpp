@@ -96,7 +96,7 @@ void Game::draw() {
 	window.display();
 }
 void Game::check_collisions() {
-	sf::Time now = shield_clock.getElapsedTime();
+	sf::Time now;
 	for (size_t i = 0; i < METEORS_QTY; i++) {
 		//метеоров с игроком
 		if (player.getHitBox().intersects(
@@ -119,16 +119,17 @@ void Game::check_collisions() {
 			if ((*it)->getType() == Bonus::SHIELD) {
 				
 				shield_clock.restart();
-				shield.setPosition(player.getPosition());
+				//shield.setPosition(player.getPosition());
 				shield.setVisible(true);
 				(*it)->setDel(true);
 				
 			}
 		}
 	}
+	now = shield_clock.getElapsedTime();
 	if (now.asSeconds() > SHIELD_VIS_TIME) {
 		shield.setVisible(false);
-		shield.setPosition(sf::Vector2f(0.f, WINDOW_HEIGHT + shield.getHeight()));
+		//shield.setPosition(sf::Vector2f(0.f, WINDOW_HEIGHT + shield.getHeight()));
 	}
 
 	if (player.isDead()) game_state = GAME_OVER;

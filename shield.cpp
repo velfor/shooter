@@ -12,7 +12,12 @@ void Shield::draw(sf::RenderWindow& window) {
 	window.draw(sprite); 
 }
 void Shield::update(sf::Vector2f position) { 
-	if (visible) { sprite.setPosition(position); }
+	if (visible) { 
+		sprite.setPosition(position.x - 15, position.y - 25); 
+	}
+	else {		
+		sprite.setPosition(0.f, WINDOW_HEIGHT + getHeight()); // вне окна
+	}
 	//sprite.setOrigin(getWidth() / 2.0, getHeight());
 }
 
